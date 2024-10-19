@@ -19,6 +19,7 @@ body {
 
 .bg-dark {
   background-color: #12002b;
+  height: 1100px;
 }
 
 .sr-only {
@@ -183,9 +184,12 @@ body {
   margin-top: 3rem;
   padding: 2rem;
 }
+.main {
+  padding-top: 5rem; 
+}
 
 .sign-in-icon {
-  font-size: 5rem;
+  font-size: 1rem;
 }
 
 .input-remember {
