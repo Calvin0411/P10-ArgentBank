@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginSuccess, loginFailure } from '../redux/actions/authActions';
-import { Link, useNavigate  } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -20,12 +18,18 @@ const SignIn = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
-      });      
+      });
 
       if (response.ok) {
         const user = await response.json();
-        dispatch(loginSuccess(user));
-        navigate('/user');
+
+        // Assurez-vous que la réponse contient bien les informations du profil
+        dispatch(loginSuccess({
+          id: user.body.id,
+          email: user.body.email,
+          firstName: user.body.firstName || 'User', // Utilisez 'User' par défaut si firstName est manquant
+        })); 
+        navigate('/user');    
       } else {
         const errorData = await response.json();
         dispatch(loginFailure(errorData.message));
@@ -43,27 +47,29 @@ const SignIn = () => {
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
-            <input 
-              type="text" 
-              id="username" 
-              value={email} // Lier la valeur à l'état
-              onChange={(e) => setEmail(e.target.value)} // Met à jour l'état
+            <input
+              type="text"
+              id="username"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required // Ajoutez l'attribut required pour la validation
             />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
-            <input 
-              type="password" 
-              id="password" 
-              value={password} // Lier la valeur à l'état
-              onChange={(e) => setPassword(e.target.value)} // Met à jour l'état
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required // Ajoutez l'attribut required pour la validation
             />
           </div>
           <div className="input-remember">
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <button type="submit" className="sign-in-button">Sign In</button> {/* Bouton de soumission */}
+          <button type="submit" className="sign-in-button">Sign In</button>
         </form>
       </section>
     </main>

@@ -1,15 +1,22 @@
-// src/redux/actions/authActions.jsx
-export const loginSuccess = (user) => ({
-    type: 'LOGIN_SUCCESS',
-    payload: user,
-  });
+// redux/actions/authActions.js
+
+export const loginSuccess = (user) => {
+    return {
+      type: 'LOGIN_SUCCESS',
+      payload: user,
+    };
+  };
   
-  export const loginFailure = (error) => ({
-    type: 'LOGIN_FAILURE',
-    payload: error,
-  });
+  export const loginFailure = (error) => {
+    return {
+      type: 'LOGIN_FAILURE',
+      payload: error,
+    };
+  };
   
-  export const logout = () => ({
-    type: 'LOGOUT',
-  });
+  export const logout = () => {
+    return {
+      type: 'LOGOUT',
+    };
+  };
   

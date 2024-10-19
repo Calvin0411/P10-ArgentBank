@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/header'; 
 import Home from './pages/HomePage';
-import SignIn from './pages/login'
-import UserProfile from './pages/userprofile'
+import SignIn from './pages/login';
+import UserProfile from './pages/userprofile';
 import Footer from './components/footer';
 
 const App = () => {

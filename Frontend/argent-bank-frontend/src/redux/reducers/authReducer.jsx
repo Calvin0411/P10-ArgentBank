@@ -1,5 +1,5 @@
+// redux/reducers/authReducer.js
 const initialState = {
-    isAuthenticated: false,
     user: null,
     error: null,
   };
@@ -9,19 +9,21 @@ const initialState = {
       case 'LOGIN_SUCCESS':
         return {
           ...state,
-          isAuthenticated: true,
-          user: action.payload,
+          user: {
+            id: action.payload.id,
+            email: action.payload.email,
+            firstName: action.payload.firstName, // Stocke le prénom
+          },
           error: null,
         };
       case 'LOGIN_FAILURE':
         return {
           ...state,
-          isAuthenticated: false,
           user: null,
-          error: action.payload,
+          error: action.payload, // Gère l'erreur si la connexion échoue
         };
       case 'LOGOUT':
-        return initialState;
+        return initialState; // Réinitialise l'état au logout
       default:
         return state;
     }
