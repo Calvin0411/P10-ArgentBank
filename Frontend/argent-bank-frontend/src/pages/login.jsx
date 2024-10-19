@@ -23,11 +23,10 @@ const SignIn = () => {
       if (response.ok) {
         const user = await response.json();
 
-        // Assurez-vous que la réponse contient bien les informations du profil
         dispatch(loginSuccess({
           id: user.body.id,
           email: user.body.email,
-          firstName: user.body.firstName || 'User', // Utilisez 'User' par défaut si firstName est manquant
+          firstName: user.body.firstName || 'User',
         })); 
         navigate('/user');    
       } else {
@@ -52,7 +51,7 @@ const SignIn = () => {
               id="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required // Ajoutez l'attribut required pour la validation
+              required 
             />
           </div>
           <div className="input-wrapper">
@@ -62,7 +61,7 @@ const SignIn = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required // Ajoutez l'attribut required pour la validation
+              required 
             />
           </div>
           <div className="input-remember">
