@@ -1,3 +1,5 @@
+// src/components/login.jsx
+
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginSuccess, loginFailure } from '../redux/actions/authActions';
@@ -22,12 +24,11 @@ const SignIn = () => {
 
       if (response.ok) {
         const user = await response.json();
-
         dispatch(loginSuccess({
           id: user.body.id,
           email: user.body.email,
           firstName: user.body.firstName || 'User',
-        })); 
+        }));
         navigate('/user');    
       } else {
         const errorData = await response.json();
