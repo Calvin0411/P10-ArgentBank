@@ -1,7 +1,7 @@
 // EditNameForm.jsx
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateUsername } from '../redux/actions/action'; 
+import { updateUsername } from '../redux/actions/action';
 
 const EditNameForm = ({ currentUserName, onClose }) => {
   const [newUserName, setNewUserName] = useState(currentUserName);
@@ -24,9 +24,12 @@ const EditNameForm = ({ currentUserName, onClose }) => {
 
       if (response.ok) {
         dispatch(updateUsername(newUserName)); // Met à jour le store Redux
-        onClose(); 
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        storedUser.userName = newUserName; // Met à jour le nom dans localStorage
+        localStorage.setItem('user', JSON.stringify(storedUser));
+        onClose();
       } else {
-        console.error(data.message); 
+        console.error(data.message);
       }
     } catch (error) {
       console.error('Error updating username:', error);

@@ -1,13 +1,26 @@
 // UserProfile.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import EditNameButton from '../components/EditNameButton'; 
 import AccountSection from '../components/AccountSection';
 import EditNameForm from '../components/EditNameForm'; 
 import WelcomeUser from '../components/WelcomeUser'; 
-import { updateUsername } from '../redux/actions/action';
+import { fetchUserProfile } from '../redux/actions/authActions'; 
 
 const UserProfile = () => {
+  const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log('User from localStorage:', user); // Log pour vérifier l'utilisateur
+    const userId = user ? user.id : null; // Vérifie si l'utilisateur existe
+    if (userId) {
+      dispatch(fetchUserProfile(userId)); // Appelle l'action pour récupérer le profil
+    } else {
+      console.error('User ID is undefined'); // Log si l'ID est undefined
+    }
+  }, [dispatch]);
 
   const handleViewTransactions = () => {
     console.log('Viewing transactions...'); 

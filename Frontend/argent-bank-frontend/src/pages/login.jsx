@@ -11,6 +11,7 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('log in with:', { email, password });
     try {
       const response = await fetch('http://localhost:3001/api/v1/user/login', {
         method: 'POST',
@@ -22,6 +23,9 @@ const SignIn = () => {
   
       if (response.ok) {
         const user = await response.json();
+        console.log('Login response:', user);
+        // Stocke le token dans le localStorage
+        localStorage.setItem('token', user.body.token);
         dispatch(loginSuccess({
           id: user.body.id,
           email: user.body.email,
@@ -29,6 +33,7 @@ const SignIn = () => {
           lastName: user.body.lastName || '',
           userName: user.body.userName || 'User',
         }));
+        navigate('/user');
         navigate('/user');
       } else {
         const errorData = await response.json();
@@ -38,8 +43,6 @@ const SignIn = () => {
       dispatch(loginFailure(error.message));
     }
   };
-  
-  
 
   return (
     <main className="main bg-dark">
@@ -79,3 +82,5 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+console.log(localStorage.getItem('token'));

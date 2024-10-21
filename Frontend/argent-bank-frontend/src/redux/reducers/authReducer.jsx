@@ -1,5 +1,6 @@
+// authReducer.js
 const initialState = {
-  user: JSON.parse(localStorage.getItem('user')) || null, 
+  user: JSON.parse(localStorage.getItem('user')) || null,
   error: null,
 };
 
@@ -23,7 +24,8 @@ const authReducer = (state = initialState, action) => {
           id: action.payload.id,
           email: action.payload.email,
           firstName: action.payload.firstName || 'User',
-          userName: action.payload.userName || '', 
+          lastName: action.payload.lastName || '',
+          userName: action.payload.userName || 'User',
         },
         error: null,
       };
@@ -34,6 +36,7 @@ const authReducer = (state = initialState, action) => {
         error: action.payload,
       };
     case 'LOGOUT':
+      localStorage.removeItem('user'); // Supprime les informations de l'utilisateur du localStorage
       return initialState;
     case 'UPDATE_USERNAME':
       return {

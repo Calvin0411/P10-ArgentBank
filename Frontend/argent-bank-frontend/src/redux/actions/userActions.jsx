@@ -18,6 +18,15 @@ export const loginSuccess = (user) => {
     };
   };
   
+  // userActions.js
+
+export const updateUsername = (userName) => {
+  return {
+    type: 'UPDATE_USERNAME',
+    payload: userName,
+  };
+};
+
   // Actions asynchrones avec Thunk
   export const fetchUserProfile = (userId) => {
     return async (dispatch) => {
