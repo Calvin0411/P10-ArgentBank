@@ -29,9 +29,9 @@ const Header = () => {
           {user ? (
             <>
               <a className="main-nav-item" href="/user">
-  <i className="fa fa-user-circle"></i>
-  {user.firstName || "User"}
-</a>
+                <i className="fa fa-user-circle"></i>
+                   {user.firstName || "User"}
+                </a>
 
               <a className="main-nav-item" href="/" onClick={handleLogout}>
                 <i className="fa fa-sign-out"></i>

@@ -1,25 +1,31 @@
-// src/pages/UserProfile.jsx
-
-import React from 'react';
-import EditNameButton from '../components/EditNameButton'; // Assure-toi que le chemin d'importation est correct
+// UserProfile.jsx
+import React, { useState } from 'react';
+import EditNameButton from '../components/EditNameButton'; 
 import AccountSection from '../components/AccountSection';
+import EditNameForm from '../components/EditNameForm'; 
+import WelcomeUser from '../components/WelcomeUser'; 
+import { updateUsername } from '../redux/actions/action';
 
 const UserProfile = () => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const handleViewTransactions = () => {
-    console.log('Viewing transactions...');
+    console.log('Viewing transactions...'); 
   };
 
   const handleEditName = () => {
-    console.log('Editing name...');
-    // Ici, tu peux ajouter la logique pour modifier le pseudo de l'utilisateur
+    setIsEditing(true); 
+  };
+
+  const closeEditForm = () => {
+    setIsEditing(false); 
   };
 
   return (
     <main className="main bg-dark">
-      <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
-        <EditNameButton onClick={handleEditName} />
-      </div>
+      <WelcomeUser /> 
+      <EditNameButton onClick={handleEditName} />
+      {isEditing && <EditNameForm currentUserName="User" onClose={closeEditForm} />} 
       <h2 className="sr-only">Accounts</h2>
       <AccountSection 
         title="Argent Bank Checking (x8349)" 

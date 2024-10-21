@@ -1,5 +1,3 @@
-// src/components/EditNameButton.jsx
-
 import React from 'react';
 
 const EditNameButton = ({ onClick }) => {

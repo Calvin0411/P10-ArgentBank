@@ -1,5 +1,3 @@
-// src/components/login.jsx
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginSuccess, loginFailure } from '../redux/actions/authActions';
@@ -21,15 +19,17 @@ const SignIn = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       if (response.ok) {
         const user = await response.json();
         dispatch(loginSuccess({
           id: user.body.id,
           email: user.body.email,
           firstName: user.body.firstName || 'User',
+          lastName: user.body.lastName || '',
+          userName: user.body.userName || 'User',
         }));
-        navigate('/user');    
+        navigate('/user');
       } else {
         const errorData = await response.json();
         dispatch(loginFailure(errorData.message));
@@ -38,6 +38,8 @@ const SignIn = () => {
       dispatch(loginFailure(error.message));
     }
   };
+  
+  
 
   return (
     <main className="main bg-dark">

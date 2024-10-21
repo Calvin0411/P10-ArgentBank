@@ -69,9 +69,11 @@ module.exports.loginUser = async serviceData => {
     // Inclue firstName et lastName dans la réponse
     return {
       token,
-      firstName: user.firstName, // Ajout du prénom
-      lastName: user.lastName, // Ajout du nom de famille (facultatif)
-    }
+      firstName: user.firstName,  
+      lastName: user.lastName,   
+      userName: user.userName, 
+    
+    };
   } catch (error) {
     console.error('Error in userService.js', error)
     throw new Error(error)
