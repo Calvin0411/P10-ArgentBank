@@ -311,6 +311,10 @@ body {
   color: white;
 }
 
+h2{
+  color: white;
+}
+
 .edit-user-form {
   display: flex;
   flex-direction: column;

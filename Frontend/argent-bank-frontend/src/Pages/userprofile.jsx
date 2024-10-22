@@ -27,18 +27,27 @@ const UserProfile = () => {
   };
 
   const handleEditName = () => {
-    setIsEditing(true); 
+    setIsEditing(true);
   };
 
   const closeEditForm = () => {
-    setIsEditing(false); 
+    setIsEditing(false);
   };
 
   return (
     <main className="main bg-dark">
-      <WelcomeUser /> 
-      <EditNameButton onClick={handleEditName} />
-      {isEditing && <EditNameForm currentUserName="User" onClose={closeEditForm} />} 
+      {isEditing ? (
+        <>
+          <h2>Edit user info</h2>
+          <EditNameForm currentUserName="User" onClose={closeEditForm} /> // Affiche le formulaire d'édition
+        </>
+      ) : (
+        <>
+          <WelcomeUser /> 
+          <EditNameButton onClick={handleEditName} /> 
+        </>
+      )}
+      
       <h2 className="sr-only">Accounts</h2>
       <AccountSection 
         title="Argent Bank Checking (x8349)" 
