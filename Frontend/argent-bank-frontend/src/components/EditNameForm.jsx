@@ -1,11 +1,20 @@
-// EditNameForm.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUsername } from '../redux/actions/action';
 
 const EditNameForm = ({ currentUserName, onClose }) => {
   const [newUserName, setNewUserName] = useState(currentUserName);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      setFirstName(storedUser.firstName);
+      setLastName(storedUser.lastName);
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,18 +46,32 @@ const EditNameForm = ({ currentUserName, onClose }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        New Username:
+    <form className="edit-user-form" onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="userName">User Name:</label>
         <input
           type="text"
+          id="userName"
           value={newUserName}
           onChange={(e) => setNewUserName(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Update</button>
-      <button type="button" onClick={onClose}>Cancel</button>
+      </div>
+      
+      <div className="form-group">
+        <label htmlFor="firstName">First Name:</label>
+        <input type="text" id="firstName" value={firstName} disabled />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="lastName">Last Name:</label>
+        <input type="text" id="lastName" value={lastName} disabled />
+      </div>
+      
+      <div className="form-buttons">
+        <button type="submit" className="btn-save">Save</button>
+        <button type="button" className="btn-cancel" onClick={onClose}>Cancel</button>
+      </div>
     </form>
   );
 };
