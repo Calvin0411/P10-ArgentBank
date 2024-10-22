@@ -156,3 +156,4 @@ definitions:
     properties:
       userName:
         type: string
+
