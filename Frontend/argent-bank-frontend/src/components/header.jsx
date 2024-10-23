@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from '../img/argentBankLogo.png'; 
+import logo from '../img/argentBankLogo.webp'; 
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../redux/actions/authActions'; // Assurez-vous d'importer l'action logout
+import { logout } from '../redux/actions/authActions'; 
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {

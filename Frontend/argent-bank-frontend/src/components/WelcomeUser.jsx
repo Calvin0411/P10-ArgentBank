@@ -1,4 +1,3 @@
-// src/components/WelcomeUser.jsx
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -13,3 +12,4 @@ const WelcomeUser = () => {
 };
 
 export default WelcomeUser;
+

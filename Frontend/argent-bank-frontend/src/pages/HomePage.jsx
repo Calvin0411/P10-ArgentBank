@@ -1,8 +1,8 @@
 import React from 'react';
-import chatIcon from '../img/icon-chat.png'; 
-import moneyIcon from '../img/icon-money.png'; 
-import securityIcon from '../img/icon-security.png'; 
-import bankTree from '../img/bank-tree.jpeg'
+import chatIcon from '../img/icon-chat.webp'; 
+import moneyIcon from '../img/icon-money.webp'; 
+import securityIcon from '../img/icon-security.webp'; 
+import bankTree from '../img/bank-tree.webp';
 
 const Home = () => {
     return (

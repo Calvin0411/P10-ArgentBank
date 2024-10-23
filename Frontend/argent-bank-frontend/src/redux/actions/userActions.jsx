@@ -1,3 +1,6 @@
+//Gère les actions mise à jour du username et la récupération des informations de profil de l'utilisateur
+
+// Pour indiquer que la connexion a réussi
 export const loginSuccess = (user) => {
     return {
       type: 'LOGIN_SUCCESS',
@@ -5,6 +8,7 @@ export const loginSuccess = (user) => {
     };
   };
   
+  // Pour indiquer que la connexion a échoué
   export const loginFailure = (error) => {
     return {
       type: 'LOGIN_FAILURE',
@@ -18,8 +22,7 @@ export const loginSuccess = (user) => {
     };
   };
   
-  // userActions.js
-
+// Action pour mettre à jour le nom d'utilisateur
 export const updateUsername = (userName) => {
   return {
     type: 'UPDATE_USERNAME',
@@ -27,7 +30,7 @@ export const updateUsername = (userName) => {
   };
 };
 
-  // Actions asynchrones avec Thunk
+  // Actions asynchrones avec Thunk et récupération du profil utilisateur
   export const fetchUserProfile = (userId) => {
     return async (dispatch) => {
       try {

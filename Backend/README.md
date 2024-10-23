@@ -1,10 +1,12 @@
 # Note du dévellopeur :
 
-Bonjour, j'ai créé le projet 10 d'Open Classroom. Ci-dessous, à partir de # Argent Bank API, vous pourrez suivre les étapes d'initialisation pour démarrer le projet. Cependant, je souhaite clarifier cette étape.
+Bonjour, j'ai créé le projet d'Open Classroom Argent Bank. Ci-dessous, à partir de # Argent Bank API, vous pourrez suivre les étapes d'initialisation pour démarrer le projet. Cependant, je souhaite clarifier cette étape.
 
 Premièrement, j'ai installé Node.js v12 et MongoDB.
 
 Les instructions pour démarrer le projet n'étaient pas à jour, alors je vous indique comment lancer le projet via le terminal :
+
+# Argent Bank API
 
 1er terminal :  cd Backend : nvm list -> nvm use 12 -> npm run dev:server
 2ème terminal :  cd Backend : npm run populate-db
@@ -15,7 +17,6 @@ Les instructions pour démarrer le projet n'étaient pas à jour, alors je vous 
 Il est bon de noter que pour lancer Mongo, ce n'est pas "mongo" mais "mongod". 
 De même, pour voir la version de celui-ci, ce n'est pas "mongo --version" mais "mongod --version".
 
-# Argent Bank API
 
 This codebase contains the code needed to run the backend for Argent Bank.
 

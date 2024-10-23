@@ -3,40 +3,46 @@ import { useDispatch } from 'react-redux';
 import { updateUsername } from '../redux/actions/action';
 
 const EditNameForm = ({ currentUserName, onClose }) => {
-  const [newUserName, setNewUserName] = useState(currentUserName);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const dispatch = useDispatch();
+  const [newUserName, setNewUserName] = useState(currentUserName); // Stocke le nouveau username
+  const [firstName, setFirstName] = useState(''); // Stocke le FirstName récupéré
+  const [lastName, setLastName] = useState(''); // Stocke le Last Name récupéré
+  const dispatch = useDispatch(); // Utilise Redux pour dispatcher des actions
 
+  // Utilisation de useEffect pour récupération de First et last Name
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser) {
+    const storedUser = JSON.parse(localStorage.getItem('user')); // Récupère les informations de l'utilisateur du localStorage
+    if (storedUser) { //définit les infos d'utilisateur dans le local storage
       setFirstName(storedUser.firstName);
       setLastName(storedUser.lastName);
+      setNewUserName(storedUser.userName);
     }
   }, []);
 
+  // Gestionnaire de soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+       // Effectue une requête PUT pour mettre à jour le username
       const response = await fetch('http://localhost:3001/api/v1/user/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
-        body: JSON.stringify({ userName: newUserName }),
+        body: JSON.stringify({ userName: newUserName }), // Envoie le nouveau username
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        dispatch(updateUsername(newUserName)); // Met à jour le store Redux
+        dispatch(updateUsername(newUserName)); // Met à jour le store Redux avec le nouveau nom d'utilisateur
         const storedUser = JSON.parse(localStorage.getItem('user'));
-        storedUser.userName = newUserName; // Met à jour le nom dans localStorage
+        storedUser.userName = newUserName; // Met à jour le nom d'utilisateur dans le localStorage
         localStorage.setItem('user', JSON.stringify(storedUser));
-        onClose();
+        onClose(); 
+
+      // gestion des erreurs
       } else {
         console.error(data.message);
       }

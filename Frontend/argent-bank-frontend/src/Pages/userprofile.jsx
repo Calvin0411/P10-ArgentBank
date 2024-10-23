@@ -1,4 +1,3 @@
-// UserProfile.jsx
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import EditNameButton from '../components/EditNameButton'; 
@@ -12,20 +11,25 @@ const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
+
+    //récupère les infos du local storage de l'utilisateur
     const user = JSON.parse(localStorage.getItem('user'));
     console.log('User from localStorage:', user); // Log pour vérifier l'utilisateur
+    console.log(localStorage.getItem('token')); // Log pour vérifier le tokken
     const userId = user ? user.id : null; // Vérifie si l'utilisateur existe
     if (userId) {
-      dispatch(fetchUserProfile(userId)); // Appelle l'action pour récupérer le profil
+      dispatch(fetchUserProfile(userId)); // Appelle l'action pour récupérer le profil depuis redux
     } else {
-      console.error('User ID is undefined'); // Log si l'ID est undefined
+      console.error('User ID is undefined'); // Log si l'ID est n'est pas là
     }
   }, [dispatch]);
 
+  // Log pour voir les transactions
   const handleViewTransactions = () => {
     console.log('Viewing transactions...'); 
   };
 
+  // Transition pour le mode édition
   const handleEditName = () => {
     setIsEditing(true);
   };
@@ -39,7 +43,7 @@ const UserProfile = () => {
       {isEditing ? (
         <>
           <h2>Edit user info</h2>
-          <EditNameForm currentUserName="User" onClose={closeEditForm} /> // Affiche le formulaire d'édition
+          <EditNameForm currentUserName="User" onClose={closeEditForm} />
         </>
       ) : (
         <>

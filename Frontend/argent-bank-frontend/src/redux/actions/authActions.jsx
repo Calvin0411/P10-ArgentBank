@@ -1,7 +1,8 @@
+//  Gère les actions liées à l'authentification des utilisateurs, la connexion, la déconnexion et la récupération du profil utilisateur
+
 export const loginSuccess = (user) => {
   // Stocke les informations de l'utilisateur dans le localStorage
   localStorage.setItem('user', JSON.stringify(user));
-  console.log('User stored in localStorage:', user); // Log pour vérifier
 
   return {
     type: 'LOGIN_SUCCESS',
@@ -10,7 +11,7 @@ export const loginSuccess = (user) => {
 };
 
 
-
+// Pour indiquer que la connexion a échoué
 export const loginFailure = (error) => {
   return {
     type: 'LOGIN_FAILURE',
@@ -18,6 +19,7 @@ export const loginFailure = (error) => {
   };
 };
 
+// Gère la connexion
 export const logout = () => {
   // Supprime les informations de l'utilisateur du localStorage
   localStorage.removeItem('user');
@@ -28,10 +30,12 @@ export const logout = () => {
   };
 };
 
+// Pour récupérer le profil de l'utilisateur
 export const fetchUserProfile = () => async (dispatch) => {
   const token = localStorage.getItem('token');
 
   try {
+     // Récupère les informations du profil de l'utilisateur
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
       method: 'GET',
       headers: {
@@ -59,4 +63,3 @@ export const fetchUserProfile = () => async (dispatch) => {
     });
   }
 };
-

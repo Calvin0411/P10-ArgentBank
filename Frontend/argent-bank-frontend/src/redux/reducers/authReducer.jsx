@@ -1,15 +1,16 @@
-// authReducer.js
 const initialState = {
+  // État initial avec les données de l'utilisateur récupérées du localStorage
   user: JSON.parse(localStorage.getItem('user')) || null,
   error: null,
 };
 
+// Reducer pour gérer les actions liées à l'authentification
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_USER_PROFILE_SUCCESS':
       return {
         ...state,
-        user: action.payload,
+        user: action.payload, // Met à jour l'utilisateur avec les nouvelles données
         error: null,
       };
     case 'FETCH_USER_PROFILE_FAILURE':
@@ -17,7 +18,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
-    case 'LOGIN_SUCCESS':
+    case 'LOGIN_SUCCESS': // Met à jour l'état avec les informations de l'utilisateur après une connexion réussie
       return {
         ...state,
         user: {
