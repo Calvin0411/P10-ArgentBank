@@ -9,8 +9,9 @@ const Header = () => {
   const navigate = useNavigate(); // Initialisation de useNavigate pour rediriger
   const user = useSelector((state) => state.auth.user); // Récupération de l'utilisateur depuis Redux
 
+  // Fonction pour gérer la déconnexion
   const handleLogout = () => {
-    dispatch(logout()); // Déclenche l'action de déconnexion
+    dispatch(logout()); // Déclenche l'action de déconnexion grâce à redux
     navigate('/'); // Redirige vers la page principale après la déconnexion
   };
 
@@ -30,7 +31,7 @@ const Header = () => {
             <>
               <a className="main-nav-item" href="/user">
                 <i className="fa fa-user-circle"></i>
-                   {user.firstName || "User"}
+                   {user.userName || "User"}
                 </a>
 
               <a className="main-nav-item" href="/" onClick={handleLogout}>
@@ -52,4 +53,3 @@ const Header = () => {
 };
 
 export default Header;
-

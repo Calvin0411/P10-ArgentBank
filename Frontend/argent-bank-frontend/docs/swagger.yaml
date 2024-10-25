@@ -45,6 +45,33 @@ paths:
         '401':
           description: L'utilisateur n'est pas authentifié
 
+    post:
+      summary: Ajouter des informations à une transaction
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              description:
+                type: string
+              amount:
+                type: number
+              type:
+                type: string
+      responses:
+        '201':
+          description: Les informations ont été ajoutées avec succès
+        '400':
+          description: Requête invalide
+        '401':
+          description: L'utilisateur n'est pas authentifié
+
   /api/v1/accounts/{accountId}/transactions/{transactionId}:
     get:
       summary: Récupérer les détails d'une transaction
@@ -89,6 +116,25 @@ paths:
       responses:
         '200':
           description: La transaction a été mise à jour avec succès
+        '404':
+          description: La transaction n'existe pas
+        '401':
+          description: L'utilisateur n'est pas authentifié
+
+    delete:
+      summary: Supprimer des informations spécifiques d'une transaction
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: transactionId
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Les informations ont été supprimées avec succès
         '404':
           description: La transaction n'existe pas
         '401':
