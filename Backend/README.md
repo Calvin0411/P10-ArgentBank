@@ -20,9 +20,6 @@ De même, pour voir la version de celui-ci, ce n'est pas "mongo --version" mais 
 
 This codebase contains the code needed to run the backend for Argent Bank.
 
-
-caisso.n92@gmail.com
-
 ## Getting Started
 
 
